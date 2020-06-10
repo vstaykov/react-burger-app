@@ -5,12 +5,21 @@ import BurgerIngredientTypes from './../../utils/burger-ingredient-types';
 
 import styles from './Burger.module.css';
 
-const burger = props => {
+const burger = ({ ingredients }) => {
+    const ingredientTypes = Object.keys(ingredients);
+
     return (
         <div className={styles.Burger}>
             <BurgerIngredient type={BurgerIngredientTypes.BREAD_TOP} />
-            <BurgerIngredient type={BurgerIngredientTypes.CHEESE} />
-            <BurgerIngredient type={BurgerIngredientTypes.MEAT} />
+            {
+                ingredientTypes.map(ingredientType => {
+                    const count = ingredients[ingredientType];
+
+                    return [...Array(count)].map((_, index) => {
+                        return <BurgerIngredient key={`${ingredientType}-${index}`} type={ingredientType} />
+                    });
+                })
+            }
             <BurgerIngredient type={BurgerIngredientTypes.BREAD_BOTTOM} />
         </div>
     );
