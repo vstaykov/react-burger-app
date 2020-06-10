@@ -7,9 +7,9 @@ class BurgerBuilder extends Component {
     constructor(props) {
         super(props)
         const ingredients = {};
-        ingredients[BurgerIngredientTypes.SALAD] = 2;
-        ingredients[BurgerIngredientTypes.CHEESE] = 3;
-        ingredients[BurgerIngredientTypes.MEAT] = 2;
+        ingredients[BurgerIngredientTypes.SALAD] = 0;
+        ingredients[BurgerIngredientTypes.CHEESE] = 0;
+        ingredients[BurgerIngredientTypes.MEAT] = 0;
 
         this.state = { ingredients };
     }
