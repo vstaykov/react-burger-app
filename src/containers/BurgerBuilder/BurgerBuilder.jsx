@@ -14,7 +14,7 @@ class BurgerBuilder extends Component {
         ingredients[BurgerIngredientTypes.CHEESE] = 0;
         ingredients[BurgerIngredientTypes.MEAT] = 0;
 
-        this.state = { ingredients, totalPrice: 4 };
+        this.state = { ingredients, totalPrice: 4, canOrder: false };
     }
 
     onMoreHandler = type => {
@@ -27,6 +27,8 @@ class BurgerBuilder extends Component {
             ingredients,
             totalPrice: updatedPrice
         });
+
+        this._updateCanOrder(ingredients);
     };
 
     onLessHandler = type => {
@@ -42,6 +44,8 @@ class BurgerBuilder extends Component {
                 ingredients,
                 totalPrice: updatedPrice
             });
+
+            this._updateCanOrder(ingredients);
         }
     };
 
@@ -54,14 +58,26 @@ class BurgerBuilder extends Component {
         return disabledInfo;
     };
 
+    _updateCanOrder = ingredients => {
+        const ingredientsCount = Object.values(ingredients).reduce((sum, count) => sum + count, 0);
+
+        this.setState({ canOrder: ingredientsCount > 0 });
+    };
+
     render() {
-        const { ingredients, totalPrice } = this.state;
+        const { ingredients, totalPrice, canOrder } = this.state;
         const disabledInfo = this._getDisabledControlsInfo();
 
         return (
             <>
                 <Burger ingredients={ingredients} />
-                <BuildControls price={totalPrice} onMore={this.onMoreHandler} onLess={this.onLessHandler} disabled={disabledInfo}/>
+                <BuildControls 
+                    price={totalPrice}
+                    onMore={this.onMoreHandler}
+                    onLess={this.onLessHandler}
+                    disabled={disabledInfo}
+                    canOrder={canOrder}
+                />
             </>
         );
     }
