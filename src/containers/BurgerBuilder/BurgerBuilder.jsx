@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 
 import Burger from './../../components/Burger/Burger';
 import BuildControls from './../../components/Burger/BuildControls/BuildControls';
+import OrderSummary from './../../components/Burger/OrderSummary/OrderSummary';
 import BurgerIngredientTypes from './../../utils/burger-ingredient-types';
 import BurgerIngredientPrices from './../../utils/burger-ingredient-prices';
+import Modal from './../../components/UI/Modal/Modal';
 
 class BurgerBuilder extends Component {
     constructor(props) {
@@ -70,6 +72,9 @@ class BurgerBuilder extends Component {
 
         return (
             <>
+                <Modal>
+                    <OrderSummary ingredients={ingredients} />
+                </Modal>
                 <Burger ingredients={ingredients} />
                 <BuildControls 
                     price={totalPrice}
