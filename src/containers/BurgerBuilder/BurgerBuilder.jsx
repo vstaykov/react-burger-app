@@ -55,13 +55,13 @@ class BurgerBuilder extends Component {
     };
 
     render() {
-        const { ingredients } = this.state;
+        const { ingredients, totalPrice } = this.state;
         const disabledInfo = this._getDisabledControlsInfo();
 
         return (
             <>
                 <Burger ingredients={ingredients} />
-                <BuildControls onMore={this.onMoreHandler} onLess={this.onLessHandler} disabled={disabledInfo}/>
+                <BuildControls price={totalPrice} onMore={this.onMoreHandler} onLess={this.onLessHandler} disabled={disabledInfo}/>
             </>
         );
     }
