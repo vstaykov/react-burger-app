@@ -5,6 +5,6 @@ describe('burger-ingredient-prices', () => {
   it('should return correct price for salad', () => {
     const price = prices[types.SALAD];
 
-    expect(price).toEqual(0.5);
+    expect(price).toEqual(0.52);
   })
 });
